@@ -1,20 +1,13 @@
 <?php
 
 $host = "mysql.railway.internal";
-$port = "3306";
 $user = "root";
 $password = "VNfigPOSHCaOXBSuKUbuXwCxQKsKuAUL";
 $dbname = "railway";
 
-try {
-    $conn = new PDO(
-        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
-        $user,
-        $password
-    );
+$conn = new mysqli($host, $user, $password, $dbname);
 
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+?>
